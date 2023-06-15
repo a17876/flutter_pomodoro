@@ -45,6 +45,13 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void onRestartPressed() {
+    setState(() {
+      isRunning = false;
+      totalSeconds = twentyFiveMinutes;
+    });
+  }
+
   String format(int seconds) {
     var duration = Duration(seconds: seconds);
     return duration.toString().substring(2, 7);
@@ -71,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Flexible(
-            flex: 3,
+            flex: 2,
             child: Center(
               child: IconButton(
                 color: Theme.of(context).cardColor,
@@ -81,6 +88,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     ? Icons.pause_circle_outline
                     : Icons.play_circle_outline),
               ),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Column(
+              children: [
+                IconButton(
+                  color: Theme.of(context).cardColor,
+                  iconSize: 60,
+                  onPressed: onRestartPressed,
+                  icon: const Icon(Icons.reset_tv),
+                ),
+                Text(
+                  'Click the button to reset the timer.',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Theme.of(context).cardColor,
+                  ),
+                )
+              ],
             ),
           ),
           Flexible(
